@@ -44,9 +44,9 @@ import com.example.weatherwise.common.WeatherWiseUiEvents
 import com.example.weatherwise.presentation.utility.Utils.convertDateStringToDayAndTime
 import com.example.weatherwise.presentation.weather_display.events.WeatherDisplayEvents
 import com.example.weatherwise.presentation.weather_display.view_model.WeatherDisplayViewModel
-import com.weatherwise.presentation.ui.theme.cloudy
-import com.weatherwise.presentation.ui.theme.rainy
-import com.weatherwise.presentation.ui.theme.sunny
+import com.example.weatherwise.presentation.ui.theme.cloudy
+import com.example.weatherwise.presentation.ui.theme.rainy
+import com.example.weatherwise.presentation.ui.theme.sunny
 import kotlinx.coroutines.flow.receiveAsFlow
 
 @Composable

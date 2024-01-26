@@ -33,7 +33,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.weatherwise.R
 import com.example.weatherwise.data.model.ForecastWeather
-import com.weatherwise.presentation.ui.theme.KamiliDark
+import com.example.weatherwise.presentation.ui.theme.KamiliDark
 
 @Composable
 fun WeatherItem(navController: NavController,weather: ForecastWeather,

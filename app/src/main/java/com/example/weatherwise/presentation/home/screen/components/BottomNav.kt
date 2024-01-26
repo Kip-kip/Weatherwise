@@ -1,6 +1,5 @@
 package com.example.weatherwise.presentation.home.screen.components
 
-import android.app.Activity
 import android.widget.Toast
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -22,7 +21,7 @@ import com.example.weatherwise.R
 import com.example.weatherwise.common.Routes
 import com.example.weatherwise.domain.model.BottomNavData
 import com.example.weatherwise.presentation.utility.LocationUtils
-import com.weatherwise.presentation.ui.theme.KamiliMustard
+import com.example.weatherwise.presentation.ui.theme.KamiliMustard
 
 @Composable
 fun BottomNav(

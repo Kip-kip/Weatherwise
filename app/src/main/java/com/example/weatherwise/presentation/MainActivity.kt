@@ -31,7 +31,7 @@ import com.example.weatherwise.presentation.home.screen.components.BottomNav
 import com.example.weatherwise.presentation.search_places.screen.SearchPlaces
 import com.example.weatherwise.presentation.utility.LocationUtils.hasLocationPermission
 import com.example.weatherwise.presentation.utility.LocationUtils.isLocationEnabled
-import com.weatherwise.presentation.ui.theme.KamiliDark
+import com.example.weatherwise.presentation.ui.theme.KamiliDark
 import com.weatherwise.presentation.ui.theme.WeatherWiseTheme
 import com.example.weatherwise.presentation.weather_display.screen.WeatherDisplayScreen
 import dagger.hilt.android.AndroidEntryPoint
@@ -44,7 +44,6 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             WeatherWiseTheme {
-
                 val navController = rememberNavController()
                 var isPermitted = false
                 var showBottomBar by rememberSaveable { mutableStateOf(true) }

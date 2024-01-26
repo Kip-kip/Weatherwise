@@ -26,9 +26,7 @@ class MultipleFavouriteWeatherPlacesViewModel @Inject constructor(
 
 ) : ViewModel() {
 
-    init {
 
-    }
 
     private val _uiEvents = Channel<FavouriteWeatherPlacesEvents>()
     val uiEvents = _uiEvents

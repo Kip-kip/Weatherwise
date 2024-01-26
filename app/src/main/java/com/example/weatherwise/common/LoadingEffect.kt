@@ -6,15 +6,12 @@ import androidx.compose.animation.core.tween
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material3.Text
 import androidx.compose.runtime.*
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import com.weatherwise.presentation.ui.theme.sunny
-import com.weatherwise.presentation.ui.theme.white
+import com.example.weatherwise.presentation.ui.theme.white
 
 @Composable
 fun LoadingEffect(

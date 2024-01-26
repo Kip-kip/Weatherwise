@@ -13,8 +13,8 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
-import com.weatherwise.presentation.ui.theme.KamiliDark
-import com.weatherwise.presentation.ui.theme.KamiliLighter
+import com.example.weatherwise.presentation.ui.theme.KamiliDark
+import com.example.weatherwise.presentation.ui.theme.KamiliLighter
 
 @Composable
 fun SimpleAppBar(
