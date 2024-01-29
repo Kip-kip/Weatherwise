@@ -53,7 +53,7 @@ import com.example.weatherwise.presentation.utility.Utils.convertLongTimeStampTo
 import kotlinx.coroutines.flow.receiveAsFlow
 
 @Composable
-fun WeatherDisplayScreen (viewModel: WeatherDisplayViewModel = hiltViewModel()) {
+fun WeatherDisplayScreen (onPopBackStack: () -> Unit,viewModel: WeatherDisplayViewModel = hiltViewModel()) {
 
     val fontName = FontFamily(Font(R.font.raleway_regular))
     val context = LocalContext.current

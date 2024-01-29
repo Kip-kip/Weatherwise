@@ -58,7 +58,8 @@ object Utility {
             timezone = 7200,
             id = 2643743,
             name = "London",
-            cod = 200
+            cod = 200,
+            last_updated = 1643569200
         )
         return mockCurrentWeatherDataEntity
     }

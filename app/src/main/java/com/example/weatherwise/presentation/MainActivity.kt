@@ -80,7 +80,9 @@ class MainActivity : ComponentActivity() {
                                 )
                             }
                             composable(Routes.WEATHER_SCREEN) {
-                                WeatherDisplayScreen(
+                                WeatherDisplayScreen(onPopBackStack = {
+                                    finish()
+                                }
                                 )
                             }
                             composable(Routes.FAVOURITE_WEATHER) {
