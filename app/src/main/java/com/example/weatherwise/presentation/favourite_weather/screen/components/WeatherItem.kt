@@ -38,6 +38,7 @@ import com.example.weatherwise.R
 import com.example.weatherwise.data.model.FavouriteWeatherDetailsEntity
 import com.example.weatherwise.data.model.ForecastWeather
 import com.example.weatherwise.presentation.ui.theme.KamiliDark
+import com.example.weatherwise.presentation.ui.theme.KamiliLighter
 import com.example.weatherwise.presentation.utility.LocationUtils.getLocationDetails
 
 @Composable
@@ -59,6 +60,7 @@ fun WeatherItem(weather: FavouriteWeatherDetailsEntity,
         Column(
             verticalArrangement = Arrangement.Top,
             horizontalAlignment = Alignment.CenterHorizontally,
+            modifier = Modifier.background(KamiliLighter).fillMaxSize()
 
             ) {
             Row(horizontalArrangement = Arrangement.SpaceBetween,verticalAlignment = Alignment.CenterVertically,
