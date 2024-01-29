@@ -3,6 +3,7 @@ package com.example.weatherwise.presentation.home.view_model
 import android.Manifest
 import android.content.Context
 import android.widget.Toast
+import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.weatherwise.common.WeatherWiseUiEvents
@@ -23,6 +24,26 @@ class WelcomeScreenViewModel @Inject constructor(
 
     private val _uiEvents = Channel<WeatherWiseUiEvents>()
     val uiEvents = _uiEvents
+
+    var button1Visible = mutableStateOf(true)
+    var button2Visible = mutableStateOf(false)
+    var button3Visible = mutableStateOf(false)
+
+    fun clickButton1(){
+        button1Visible.value = false
+        button2Visible.value = true
+        button3Visible.value = false
+    }
+    fun clickButton2(){
+        button1Visible.value = false
+        button2Visible.value = false
+        button3Visible.value = true
+    }
+    fun clickButton3(){
+        button1Visible.value = true
+        button2Visible.value = false
+        button3Visible.value = false
+    }
 
     fun validatePermissionsAndGPS(context: Context){
         if(!hasLocationPermission(context)){

@@ -7,7 +7,7 @@ import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Update
 import com.example.weatherwise.data.model.CurrentWeatherDataEntity
-import com.example.weatherwise.data.model.FavouriteLocationEntity
+import com.example.weatherwise.data.model.FavouriteWeatherDetailsEntity
 import com.example.weatherwise.data.model.ForecastWeatherDataEntity
 import kotlinx.coroutines.flow.Flow
 
@@ -34,7 +34,7 @@ interface WeatherDao {
     @Query("DELETE FROM forecastweatherdataentity")
     fun deleteForecastWeather()
 
-    @Query("SELECT * FROM forecastweatherdataentity WHERE room_id = 1")
+    @Query("SELECT * FROM forecastweatherdataentity LIMIT 1")
     fun getForecastWeatherById(): ForecastWeatherDataEntity?
 
     @Update
@@ -42,8 +42,11 @@ interface WeatherDao {
 
     //    Fav places
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertFavouriteLocation(favouriteLocation: FavouriteLocationEntity)
+    fun insertFavouriteWeatherDetails(favouriteLocation: FavouriteWeatherDetailsEntity)
 
-    @Query("SELECT * FROM favouritelocationentity")
-    fun getFavouriteLocations(): List<FavouriteLocationEntity>
+    @Query("DELETE FROM favouriteweatherdetailsentity WHERE  timeStamp = :timeStamp")
+    fun deleteFavouriteWeatherDetails(timeStamp: String)
+
+    @Query("SELECT * FROM favouriteweatherdetailsentity ORDER BY timeStamp DESC ")
+    fun getFavouriteWeatherDetails(): Flow<List<FavouriteWeatherDetailsEntity>>
 }

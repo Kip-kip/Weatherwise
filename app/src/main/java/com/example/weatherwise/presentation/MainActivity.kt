@@ -71,7 +71,7 @@ class MainActivity : ComponentActivity() {
                 ) {
                         NavHost(
                             navController = navController,
-                            startDestination = if (isPermitted) Routes.SEARCH_PLACES else Routes.WELCOME_SCREEN
+                            startDestination = if (isPermitted) Routes.WEATHER_SCREEN else Routes.WELCOME_SCREEN
                         ) {
                             composable(Routes.WELCOME_SCREEN) {
                                 WelcomeScreen(navController, onPopBackStack = {

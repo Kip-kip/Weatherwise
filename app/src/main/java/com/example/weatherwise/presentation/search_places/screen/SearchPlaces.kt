@@ -40,7 +40,6 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.weatherwise.R
-import com.example.weatherwise.common.Constants.API_KEY
 import com.example.weatherwise.presentation.favourite_weather_places.events.FavouriteWeatherPlacesEvents
 import com.example.weatherwise.presentation.search_places.events.SearchPlacesEvents
 import com.example.weatherwise.presentation.search_places.view_model.SearchPlacesViewModel
@@ -68,7 +67,7 @@ fun SearchPlaces(onPopBackStack: () -> Unit,viewModel: SearchPlacesViewModel = h
 
 
     viewModel.fusedLocationClient = LocationServices.getFusedLocationProviderClient(context)
-    Places.initialize(context, API_KEY)
+    Places.initialize(context, context.getString(R.string.api_key))
     viewModel.placesClient = Places.createClient(context)
     viewModel.geoCoder = Geocoder(context)
     val cameraState = CameraPositionState()

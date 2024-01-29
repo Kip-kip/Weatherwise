@@ -1,6 +1,8 @@
 package com.example.weatherwise.presentation.utility
 
+import java.lang.String.format
 import java.text.SimpleDateFormat
+import java.util.Date
 import java.util.Locale
 
 object Utils {
@@ -20,5 +22,10 @@ object Utils {
             e.printStackTrace()
             return "Error"
         }
+    }
+
+    fun convertLongTimeStampToDayAndTime(currentTimeMillis: Long): String {
+        val sdf = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault())
+        return sdf.format(Date(currentTimeMillis))
     }
 }

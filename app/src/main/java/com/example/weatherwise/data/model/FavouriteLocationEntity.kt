@@ -4,9 +4,12 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity
-data class FavouriteLocationEntity(
+data class FavouriteWeatherDetailsEntity(
+    val timeStamp:String,
     val lat:Double,
     val lon:Double,
+    val temp:Double,
+    val weatherKind:String,
     @PrimaryKey(autoGenerate = true)
-    val loc_id: Long = 0,
+    val fav_id: Long = 0,
     )

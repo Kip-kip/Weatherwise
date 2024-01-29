@@ -7,6 +7,7 @@ import androidx.compose.runtime.mutableStateListOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.weatherwise.data.local.dao.WeatherDao
+import com.example.weatherwise.domain.use_case.FavouriteWeatherUseCase
 import com.example.weatherwise.presentation.favourite_weather_places.events.FavouriteWeatherPlacesEvents
 import com.example.weatherwise.presentation.utility.LocationUtils
 import com.google.android.gms.location.LocationServices
@@ -14,18 +15,19 @@ import com.google.android.gms.location.Priority
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.tasks.CancellationTokenSource
 import dagger.hilt.android.lifecycle.HiltViewModel
+import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.flow.firstOrNull
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 @HiltViewModel
 class MultipleFavouriteWeatherPlacesViewModel @Inject constructor(
-    private val weatherDao: WeatherDao
+    private val favouriteWeatherUseCase: FavouriteWeatherUseCase
 
 ) : ViewModel() {
-
 
 
     private val _uiEvents = Channel<FavouriteWeatherPlacesEvents>()
@@ -71,15 +73,18 @@ class MultipleFavouriteWeatherPlacesViewModel @Inject constructor(
     }
 
 
-     fun loadLocations() {
-         viewModelScope.launch {
-             withContext(Dispatchers.IO) {
-                 weatherDao.getFavouriteLocations().onEach {
-                     _locationList.add(LatLng(it.lat, it.lon))
-                 }
-             }
-         }
-     }
+    fun loadLocations(){
+            viewModelScope.launch(){
+                val favouriteWeatherDetails = favouriteWeatherUseCase.getFavouriteWeatherDetails()
+                favouriteWeatherDetails.firstOrNull()?.onEach {
+                    _locationList.add(LatLng(it.lat,it.lon))
+                }
+
+            }
+
+
+    }
+
 
     }
 

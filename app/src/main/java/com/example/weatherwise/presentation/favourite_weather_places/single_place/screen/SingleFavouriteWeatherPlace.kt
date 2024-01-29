@@ -34,9 +34,9 @@ fun SingleFavouriteWeatherPlace(onPopBackStack: () -> Unit, viewModel: SingleFav
 
     val cameraState = CameraPositionState()
 
-    val customIconBitmap = BitmapFactory.decodeResource(context.resources, R.drawable.fav_place)
-    val scaledIconBitmap = Bitmap.createScaledBitmap(customIconBitmap, 120, 120, false)
-    val customIcon = BitmapDescriptorFactory.fromBitmap(scaledIconBitmap)
+//    val customIconBitmap = BitmapFactory.decodeResource(context.resources, R.drawable.fav_place)
+//    val scaledIconBitmap = Bitmap.createScaledBitmap(customIconBitmap, 120, 120, false)
+//    val customIcon = BitmapDescriptorFactory.fromBitmap(scaledIconBitmap)
 
 
     LaunchedEffect(key1 = true){
@@ -61,7 +61,7 @@ fun SingleFavouriteWeatherPlace(onPopBackStack: () -> Unit, viewModel: SingleFav
                         it.showInfoWindow()
                         true
                     },
-                    icon = customIcon
+                    icon = BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_CYAN)
                 )
 
 

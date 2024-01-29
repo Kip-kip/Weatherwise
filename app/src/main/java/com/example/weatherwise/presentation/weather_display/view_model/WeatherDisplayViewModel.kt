@@ -4,11 +4,13 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.location.Geocoder
 import androidx.compose.runtime.State
+import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.weatherwise.common.Resource
 import com.example.weatherwise.common.WeatherWiseUiEvents
+import com.example.weatherwise.domain.use_case.FavouriteWeatherUseCase
 import com.example.weatherwise.domain.use_case.WeatherUseCase
 import com.example.weatherwise.presentation.utility.LocationUtils.isLocationEnabled
 import com.example.weatherwise.presentation.weather_display.events.WeatherDisplayEvents
@@ -27,7 +29,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class WeatherDisplayViewModel @Inject constructor(
-    private val weatherUseCase: WeatherUseCase
+    private val weatherUseCase: WeatherUseCase,
+    private val favouriteWeatherUseCase: FavouriteWeatherUseCase
 ) : ViewModel() {
 
     private val _uiEvents = Channel<WeatherWiseUiEvents>()
@@ -48,6 +51,9 @@ class WeatherDisplayViewModel @Inject constructor(
     val lat = _lat
     private val _lon = mutableStateOf("")
     val lon = _lon
+
+    private var _listOfFavTimestamps = listOf("")
+    val listOfFavTimestamps = _listOfFavTimestamps
 
 
     init {
@@ -145,12 +151,11 @@ class WeatherDisplayViewModel @Inject constructor(
         }.launchIn(viewModelScope)
     }
 
-
     fun receiveUIEvents(event: WeatherDisplayEvents) {
         when (event) {
             is WeatherDisplayEvents.OnMarkAsFavourite -> {
                 viewModelScope.launch {
-                    weatherUseCase.markAsFavourite(event.listId,event.lat,event.lon)
+                    favouriteWeatherUseCase.markAsFavourite(event.timeStamp,event.lat,event.lon,event.temp,event.weatherKind)
                 }
             }
         }

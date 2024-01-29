@@ -17,6 +17,8 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material3.Divider
@@ -47,6 +49,7 @@ import com.example.weatherwise.presentation.weather_display.view_model.WeatherDi
 import com.example.weatherwise.presentation.ui.theme.cloudy
 import com.example.weatherwise.presentation.ui.theme.rainy
 import com.example.weatherwise.presentation.ui.theme.sunny
+import com.example.weatherwise.presentation.utility.Utils.convertLongTimeStampToDayAndTime
 import kotlinx.coroutines.flow.receiveAsFlow
 
 @Composable
@@ -98,8 +101,6 @@ fun WeatherDisplayScreen (viewModel: WeatherDisplayViewModel = hiltViewModel()) 
         }
     }
 
-
-
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -138,8 +139,9 @@ fun WeatherDisplayScreen (viewModel: WeatherDisplayViewModel = hiltViewModel()) 
                             .fillMaxWidth()
                             .padding(top = 10.dp, end = 10.dp)
                     ) {
+
                         Text(
-                            "${viewModel.myCountry.value+", "+viewModel.myCity.value+", "+viewModel.myAddress.value}",
+                            if (temp!=null) "${viewModel.myCountry.value+", "+viewModel.myCity.value+", "+viewModel.myAddress.value}" else "",
                             style = TextStyle(
                                 Color.White,
                                 fontSize = 14.sp,
@@ -177,10 +179,31 @@ fun WeatherDisplayScreen (viewModel: WeatherDisplayViewModel = hiltViewModel()) 
                             .fillMaxWidth()
                             .padding(top = 5.dp, end = 10.dp)) {
                         Text(
-                            if (temp!=null) "${viewModel.state.value.currentWeather?.weather?.get(0)?.main}\u00B0" else "",
+                            if (temp!=null) "${viewModel.state.value.currentWeather?.weather?.get(0)?.main}" else "",
                             style = TextStyle(
                                 Color.White,
                                 fontSize = 24.sp,
+                                fontWeight = FontWeight.W800,
+                                fontFamily = fontName
+                            ),
+                            modifier = Modifier
+                                .padding(top = 20.dp, end = 0.dp)
+                        )
+
+                    }
+
+                    Row(horizontalArrangement = Arrangement.Center,
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(top = 5.dp, end = 10.dp)) {
+                        Text(
+                            if (temp!=null) "Last updated: ${viewModel.state.value.currentWeather?.let {
+                                convertLongTimeStampToDayAndTime(
+                                    it.last_updated)
+                            }}" else "",
+                            style = TextStyle(
+                                Color.White,
+                                fontSize = 14.sp,
                                 fontWeight = FontWeight.W800,
                                 fontFamily = fontName
                             ),
@@ -292,7 +315,7 @@ fun WeatherDisplayScreen (viewModel: WeatherDisplayViewModel = hiltViewModel()) 
                     .padding(vertical = 8.dp)
             )
             if(viewModel.state.value.forecastWeatherIsLoading){
-                Column(modifier = Modifier.padding(top=100.dp)) {
+                Column() {
                     LoadingEffect()
                 }
             }
@@ -348,9 +371,11 @@ fun WeatherDisplayScreen (viewModel: WeatherDisplayViewModel = hiltViewModel()) 
                                         detectTapGestures {
                                             viewModel.receiveUIEvents(
                                                 WeatherDisplayEvents.OnMarkAsFavourite(
-                                                    forecastItem.list_id,
+                                                    forecastItem.dt_txt,
                                                     viewModel.state.value.forecastWeather?.city?.coord?.lat,
-                                                    viewModel.state.value.forecastWeather?.city?.coord?.lon
+                                                    viewModel.state.value.forecastWeather?.city?.coord?.lon,
+                                                    forecastItem.main.temp,
+                                                    forecastItem.weather[0].main,
                                                 )
 
                                             )

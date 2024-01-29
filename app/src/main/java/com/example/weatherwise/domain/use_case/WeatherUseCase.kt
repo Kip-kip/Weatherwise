@@ -43,12 +43,7 @@ class WeatherUseCase @Inject constructor(
 
     }
 
-    suspend fun markAsFavourite(listId:Int, lat: Double?, lon: Double?){
-        repository.updateForecastWeatherFavoriteStatus(listId)
-        if (lat != null && lon != null) {
-            repository.insertFavouritePlace(lat, lon)
-        }
-        }
+
 
     }
 

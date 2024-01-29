@@ -24,7 +24,6 @@ import javax.inject.Inject
 
 @HiltViewModel
 class SearchPlacesViewModel @Inject constructor(
-//    private val weatherUseCase: WeatherUseCase
 ) : ViewModel() {
 
     lateinit var fusedLocationClient: FusedLocationProviderClient
@@ -55,7 +54,6 @@ class SearchPlacesViewModel @Inject constructor(
             val request = FindAutocompletePredictionsRequest.builder().setQuery(query).build()
             placesClient.findAutocompletePredictions(request).addOnSuccessListener { response ->
                 locationAutofill += response.autocompletePredictions.map {
-                    println("Murda")
                     AutocompleteResult(
                         it.getFullText(null).toString(), it.placeId
                     )

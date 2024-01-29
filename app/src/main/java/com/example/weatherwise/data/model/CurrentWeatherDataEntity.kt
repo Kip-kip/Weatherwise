@@ -1,5 +1,6 @@
 package com.example.weatherwise.data.model
 
+import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import androidx.room.TypeConverters
@@ -28,6 +29,7 @@ data class CurrentWeatherDataEntity(
     val id: Int,
     val name: String,
     val cod: Int,
+    @ColumnInfo(name = "last_updated") var last_updated: Long,
     @PrimaryKey(autoGenerate = true)
     val room_id: Long = 0,
 )
