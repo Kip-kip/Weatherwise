@@ -13,4 +13,7 @@ Additional libraries;
 1. Google places - facilitates the exploration and search for locations on maps.
 2. Google play services location - responsible for handing map-related activities.
 
+Requirements;
+1. In order to access google map features ensure you have a secure.properties file in the root folder of the project alongside the app folder. This file should contain your Google Cloud API Key 
+
 
